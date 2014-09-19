@@ -182,6 +182,10 @@ GetReportData <- function(query.builder, token,
     }
   }
 
-  ga.list$rows <- NULL
-  return(list(final.df, ga.list))
+  if (exists('ga.list')) {
+    ga.list$rows <- NULL
+    return(list(final.df, ga.list))
+  } else {
+    return(list(final.df, NULL))
+  }
 }
