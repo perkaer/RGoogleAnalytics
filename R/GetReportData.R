@@ -47,7 +47,8 @@
 #' ga.df <- GetReportData(query, oauth_token, paginate_query=True)
 #' }
 #'
-#' @return dataframe containing the response from the Google Analytics API
+#' @return A list containing the response from the Google Analytics API in the first element
+#' and the second element contains more info from core API.
 #'
 #' @seealso Prior to executing the query, as a good practice
 #' queries can be tested in the Google Analytics Query Feed Explorer at \url{http://ga-dev-tools.appspot.com/explorer/}
@@ -180,5 +181,7 @@ GetReportData <- function(query.builder, token,
       stop("Pagination is not required. Set paginate_Query = F and re-run the query\n")
     }
   }
-  return(final.df)
+
+  ga.list$rows <- NULL
+  return(list(final.df, ga.list))
 }
